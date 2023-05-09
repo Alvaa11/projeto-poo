@@ -1,6 +1,4 @@
 from interface import ExcelInterface, IAlterarExcel
-from typing import Dict
-
 
 class ExcelRepository(ExcelInterface):
 

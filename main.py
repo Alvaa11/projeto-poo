@@ -1,11 +1,10 @@
-from factory import ExcelFactory, AlterarFactory
+from factory import ExcelFactory, AlterarFactory, ContadorFactory
 import usecase
 
 # usecase = ExcelFactory.create()
-# response = usecase.do_something(True)
 
-# print(response)
 
-funcionario = AlterarFactory.Alterar()
-response = funcionario.fazer_algo(True)
+# funcionario = AlterarFactory.Alterar()
+# response = funcionario.fazer_algo(True)
 
+usecase = ContadorFactory.start()
