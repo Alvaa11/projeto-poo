@@ -27,20 +27,15 @@ class AlterarFactory:
 
     @staticmethod
     def Alterar() -> Funcionario:
-            try:
-                planilha = input('Qual planilha: ')
-                pagina = input('Qual pagina: ')
-                planilha = op.load_workbook(f'{planilha}.xlsx')
-                pagina = planilha[pagina]
-                sub = input('O que quer mudar: ')
-                o = input('Pelo que: ')
-                for rows in pagina.iter_rows(min_row=1, max_row=1000):
-                     for cell in rows:
-                          if cell.value == sub:
-                               cell.value = o
-                planilha.save(f'{planilha}.xlsx')
-                return Funcionario(AlterarExcelRepository.Alter_sheet(planilha=planilha, pagina=pagina,substituicao=sub, substituto=o))
-            except Exception as error:
-                print('Deu bosta', error)
-            else:
-                print('ai sim ein')
+        planilha = input('Qual planilha? ')
+        planilha = op.load_workbook(f'{planilha}.xlsx')
+        pagina = input('Qual pagina está o que deve ser alterado? ')
+        pagina = planilha[f'{pagina}']
+        alterar = input('O que devemos alterar nessa pagina? ')
+        alteracao = input('Pelo que quer alterar? ')
+        for rows in pagina.iter_rows(min_row=1, max_row=1000):
+            for cell in rows:
+                if cell.value == alterar:
+                    cell.value = alteracao
+        planilha.save(f'{planilha}.xlsx')
+        return Funcionario(IAlterarExcelRepository.Alter_sheet(planilha=planilha, pagina=pagina, substituicao=alterar, substituto=alteracao))
