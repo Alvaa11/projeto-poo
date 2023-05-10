@@ -6,12 +6,12 @@ class ContadorFactory:
 
     @staticmethod
     def start() -> UseCaseContador:
-        try:
-            planilha = input('Qual o nome da planilha? ')
+        try: 
+            planilha = input('Qual o nome da planilha: ')
             planilha = pd.read_excel(f'{planilha}.xlsx')
             print(planilha)
-            # col = str(input('Qual coluna? '))
-            soma = planilha[planilha['preço']].sum()
-            print(soma)
-        except Exception as error:
-            print(f'deu esse erro ai, {error}')
+            col = input('Qual coluna? ')
+            linha = input('Qual linha? ')
+            print(planilha.loc[planilha[f'{col}'==linha], f'{col}'].sum())
+        except:
+            print('Deu bosta')
