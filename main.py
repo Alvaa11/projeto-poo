@@ -1,10 +1,19 @@
-from factory import ExcelFactory, AlterarFactory, ContadorFactory
-import usecase
+from factory import ExcelFactory, AlterarFactory
+from avisos import linha
 
-# usecase = ExcelFactory.create()
+print(f"""
+{linha()}
+CRIAR PLANILHA | ALTERAR PLANILHA   
+Digite "Criar"  Digite "Alterar"
+para criar uma  para alterar uma
+planilha        uma planilha
+{linha()}
+""")
+
+service = str(input('Qual serviço deseja usar hoje: ')).capitalize()
+if service == 'Criar':
+    usecase = ExcelFactory.create()
+elif service == 'Alterar':
+    funcionario = AlterarFactory.Alterar()
 
 
-# funcionario = AlterarFactory.Alterar()
-# response = funcionario.fazer_algo(True)
-
-usecase = ContadorFactory.start()

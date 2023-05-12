@@ -1,14 +1,15 @@
 from planilhas import ExcelRepository, AlterarExcelRepository
 from usecase import UseCase, Funcionario
 import openpyxl as op
-
+import avisos
 class ExcelFactory:
 
     @staticmethod
     def create() -> UseCase:
+        avisos.boas_vindas_criar()
         planilha = op.Workbook()
         pagina = planilha['Sheet']
-
+        avisos.aviso1()
         while True:
             informacoes = input('O que deseja adicionar?').split(';')
             pagina.append(informacoes)
@@ -27,11 +28,13 @@ class AlterarFactory:
 
     @staticmethod
     def Alterar() -> Funcionario:
+        avisos.boas_vindas_alterar()
         try:    
             planilha = input('Qual planilha? ')
             planilha = op.load_workbook(f'{planilha}.xlsx')
             pagina = input('Qual pagina está o que deve ser alterado? ')
             pagina = planilha[f'{pagina}']
+            avisos.aviso2()
             alterar = input('O que devemos alterar nessa pagina? ')
             alteracao = input('Pelo que quer alterar? ')
             for rows in pagina.iter_rows(min_row=1, max_row=1000):
